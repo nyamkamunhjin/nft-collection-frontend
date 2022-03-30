@@ -8,9 +8,22 @@ import {
   ScrollRestoration,
 } from 'remix';
 import type { MetaFunction } from 'remix';
-import styles from './tailwind.css';
+import tailwindStyles from './tailwind.css';
+import styles from './styles/index.css';
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: tailwindStyles },
+  { rel: 'stylesheet', href: styles },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"',
+  },
+];
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',

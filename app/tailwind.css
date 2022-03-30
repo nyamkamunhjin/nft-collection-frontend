@@ -472,11 +472,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .flex-col {
   flex-direction: column;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.bg-indigo-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }

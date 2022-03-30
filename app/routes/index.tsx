@@ -1,10 +1,44 @@
-interface Props {
-  hello?: string;
-}
+import { useEffect, useState } from 'react';
 
 export default function Index() {
+  const [currentAccount, setCurrentAccount] = useState('');
+  const checkIfWalletIsConnected = async () => {
+    try {
+      /*
+       * First make sure we have access to window.ethereum
+       */
+      const { ethereum } = window as any;
+
+      if (!ethereum) {
+        console.log('Make sure you have metamask!');
+
+        return;
+      }
+      console.log('We have the ethereum object', ethereum);
+
+      /*
+       * Check if we're authorized to access the user's wallet
+       */
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+      if (accounts?.length > 0) {
+        const account = accounts[0];
+        console.log('Found an authorized account:', account);
+        setCurrentAccount(account);
+      } else {
+        console.log('No authorized account found.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, []);
+
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
+    <div className="flex flex-col gap-2 bg-indigo-500 items-center text-5xl justify-center h-full">
       <h1>Welcome to Remix</h1>
       <ul>
         <li>
